@@ -3,6 +3,9 @@
 \name{elnet_coord}
 \alias{elnet_coord}
 \title{Solving elastic net via coordinate descent}
+\usage{
+elnet_coord(y, X, Lambda, alpha, beta_init, iterlength)
+}
 \arguments{
 \item{y}{The response vector}
 

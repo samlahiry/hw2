@@ -9,6 +9,7 @@
 #' @param core number of core used for parallel computing (only valid for Jacobi Parallel)
 #'
 #' @return The solution of the system
+#' @export
 
 solve_ols=function(A,b,method,tol,maxiter,core)
 {

@@ -9,21 +9,19 @@
 #' @param iterlength no. of iteration of the coordinate descent algorithm
 #'
 #' @return None
+#' @export
 
 
 
-library(reshape2)
-library(ggplot2)
-library(gridExtra)
 
-st=function(x,lambda)## soft thresholding operator
-{
-  return((x>=0)*(abs(x)-lambda)*(abs(x)>lambda)-(x<0)*(abs(x)-lambda)*(abs(x)>lambda))
-}
 
 
 elnet_coord=function(y,X,Lambda,alpha,beta_init,iterlength) ## coordinate descent elastic net
 {
+  st=function(x,lambda)## soft thresholding operator
+  {
+    return((x>=0)*(abs(x)-lambda)*(abs(x)>lambda)-(x<0)*(abs(x)-lambda)*(abs(x)>lambda))
+  }
   p=ncol(X)
   n=nrow(X)
   solpath=matrix(0,nrow=length(Lambda),ncol=p)
@@ -47,13 +45,13 @@ elnet_coord=function(y,X,Lambda,alpha,beta_init,iterlength) ## coordinate descen
 
 
 #solution paths
-plt=function(n,Lambda,alpha,beta_init,iterlength)## plots solution paths for different values of n and alpha
-{
-  Sol=elnet_coord(y,X,Lambda,alpha,beta_init,iterlength)
-  Sol1=cbind(Sol,apply(abs(Sol),1,sum))
-  dat=data.frame(number=as.character(1:10),t(Sol[,1:10]))
-  dat_melt=melt(dat, id.vars = 'number')
-  dat1=data.frame(dat_melt,norm=rep(Sol1[,21],each=10))
-  ggplot(dat1, aes(x = norm, y = value)) + geom_line(aes(color = number,group=number),size=1)
+#plt=function(n,Lambda,alpha,beta_init,iterlength)## plots solution paths for different values of n and alpha
+#{
+  #Sol=elnet_coord(y,X,Lambda,alpha,beta_init,iterlength)
+  #Sol1=cbind(Sol,apply(abs(Sol),1,sum))
+  #dat=data.frame(number=as.character(1:10),t(Sol[,1:10]))
+  #dat_melt=melt(dat, id.vars = 'number')
+  #dat1=data.frame(dat_melt,norm=rep(Sol1[,21],each=10))
+  #ggplot(dat1, aes(x = norm, y = value)) + geom_line(aes(color = number,group=number),size=1)
   
-}
+#}

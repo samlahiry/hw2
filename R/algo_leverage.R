@@ -7,6 +7,7 @@
 #' @param type uniform weightage or leverage weightage (default uniform)
 #'
 #' @return coefficient of the regression
+#' @export
 
 
 
