@@ -1,3 +1,15 @@
+#' Solving OLS using subsampling
+#'
+#'
+#' @param X design matrix
+#' @param y response vector
+#' @param r number of subsamples
+#' @param type uniform weightage or leverage weightage (default uniform)
+#'
+#' @return coefficient of the regression
+
+
+
 algo_leverage=function(X,y,r,type)## function to estimate beta with sampling probability pi and subsample size r
 {
   if(missing(type))

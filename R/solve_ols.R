@@ -1,3 +1,15 @@
+#' Solving linear systems of the form Ax=b
+#'
+#' @name solve_ols
+#' @param A matrix of the system to be solved
+#' @param b vector of the system to be solved
+#' @param method Gauss, Jacobi or Jacobi parallel
+#' @param tol tolerance level of relative errors (default 1e-10)
+#' @param maxiter maximum number of iterations (default 10000)
+#' @param core number of core used for parallel computing (only valid for Jacobi Parallel)
+#'
+#' @return The solution of the system
+
 solve_ols=function(A,b,method,tol,maxiter,core)
 {
   if(missing(tol))
