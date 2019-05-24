@@ -5,10 +5,10 @@
 #' @param X Design matrix
 #' @param Lambda Sequence of penalizing weights 
 #' @param alpha weightage on L_1 norm
-#' @param beta_init initial coefficient vector
-#' @param iterlength no. of iteration of the coordinate descent algorithm
+#' @param beta_init initial coefficient vector (default rep(0,ncol(X)) - the zero vector )
+#' @param iterlength no. of iteration of the coordinate descent algorithm (default = 1000)
 #'
-#' @return None
+#' @return Solution path - A matrix of dimension (length(Lambda),ncol(X)) where each row gives the coefficient vector for a fixed Lambda.
 #' @export
 
 

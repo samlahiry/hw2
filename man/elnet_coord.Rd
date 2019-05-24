@@ -15,12 +15,12 @@ elnet_coord(y, X, Lambda, alpha, beta_init, iterlength)
 
 \item{alpha}{weightage on L_1 norm}
 
-\item{beta_init}{initial coefficient vector}
+\item{beta_init}{initial coefficient vector (default rep(0,ncol(X)) - the zero vector )}
 
-\item{iterlength}{no. of iteration of the coordinate descent algorithm}
+\item{iterlength}{no. of iteration of the coordinate descent algorithm (default = 1000)}
 }
 \value{
-None
+Solution path - A matrix of dimension (length(Lambda),ncol(X)) where each row gives the coefficient vector for a fixed Lambda.
 }
 \description{
 Solving elastic net via coordinate descent

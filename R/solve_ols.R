@@ -6,7 +6,7 @@
 #' @param method Gauss, Jacobi or Jacobi parallel
 #' @param tol tolerance level of relative errors (default 1e-10)
 #' @param maxiter maximum number of iterations (default 10000)
-#' @param core number of core used for parallel computing (only valid for Jacobi Parallel)
+#' @param core number of core used for parallel computing (only valid for Jacobi Parallel and default=3)
 #'
 #' @return The solution of the system
 #' @export

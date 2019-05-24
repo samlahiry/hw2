@@ -13,7 +13,7 @@ algo_leverage(X, y, r, type)
 
 \item{r}{number of subsamples}
 
-\item{type}{uniform weightage or leverage weightage (default uniform)}
+\item{type}{"unif" denoting uniform weightage or "lev" denoting leverage weightage (default uniform)}
 }
 \value{
 coefficient of the regression

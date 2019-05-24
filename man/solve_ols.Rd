@@ -17,7 +17,7 @@ solve_ols(A, b, method, tol, maxiter, core)
 
 \item{maxiter}{maximum number of iterations (default 10000)}
 
-\item{core}{number of core used for parallel computing (only valid for Jacobi Parallel)}
+\item{core}{number of core used for parallel computing (only valid for Jacobi Parallel and default=3)}
 }
 \value{
 The solution of the system

@@ -4,7 +4,7 @@
 #' @param X design matrix
 #' @param y response vector
 #' @param r number of subsamples
-#' @param type uniform weightage or leverage weightage (default uniform)
+#' @param type "unif" denoting uniform weightage or "lev" denoting leverage weightage (default uniform)
 #'
 #' @return coefficient of the regression
 #' @export
