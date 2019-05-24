@@ -18,6 +18,10 @@
 
 elnet_coord=function(y,X,Lambda,alpha,beta_init,iterlength) ## coordinate descent elastic net
 {
+  if(missing(beta_init))
+    beta_init=rep(0,ncol(X))
+  if(missing(iterlength))
+    iterlength=1000
   st=function(x,lambda)## soft thresholding operator
   {
     return((x>=0)*(abs(x)-lambda)*(abs(x)>lambda)-(x<0)*(abs(x)-lambda)*(abs(x)>lambda))

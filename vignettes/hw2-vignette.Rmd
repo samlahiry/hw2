@@ -1,0 +1,145 @@
+---
+title: "hw2-vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{hw2-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+This package has three functions.
+
+1. solve_ols() - This function solves linear systems like Ax=b where A is a square matrix by one of the three methods - Gauss, Jacobi or Jacobi-parallel.
+
+1. algo_leverage() - This function estimates the coefficients of a linear regression by subsampling.
+
+1. elnet_coord() - This function estimates the coefficients of a high dimensional linear regression with elastic net penalty using coordinate descent algorithm.
+
+
+#solve_ols()
+
+##Usage
+
+solve_ols(A,b,method,tol,maxiter,core)
+
+##Arguments
+
+`A` matrix of the system to be solved.
+
+`b` vector of the system to be solved.
+
+`method` "Gauss", "Jacobi" or "Jacobi parallel".
+
+`tol` a positive number denoting the tolerance level of relative errors (default 1e-10).
+
+`maxiter`maximum number of iterations (default 10000).
+
+`core` number of core used for parallel computing (only valid for Jacobi Parallel and default=3).
+
+##Value
+
+Solution of the system
+
+##Example
+
+
+
+```{r,}
+library(hw2)
+#creating the matrix and vector as given in HW1 but with samller n
+n=10
+alpha=3
+D=alpha*diag(n)
+L=matrix(0,n,n)
+U=matrix(0,n,n)
+for(i in 1:(n-1))
+{
+L[i+1,i]=-1
+U[i,i+1]=-1
+}
+
+v=rep(c(1,0),n/2)
+A=L+D+U
+b=A%*%v
+
+solve_ols(A,b,"Gauss")
+```
+
+#algo_leverage()
+
+##Usage
+
+algo_leverage(X,y,r,type)
+
+##Arguments
+
+`X` design matrix
+
+`y` response vector
+
+`r` number of subsamples
+
+`type` "unif" denoting uniform weightage or "lev" denoting leverage weightage (default uniform)
+
+##Value
+
+Coefficient of the regression
+
+##Example
+
+```{r,}
+library(hw2)
+#creating the example as in hw1
+r=100
+x=rt(500,6)
+y=-x+rnorm(500)
+X=as.matrix(x)
+
+algo_leverage(X,y,r)
+```
+
+#elnet_coord()
+
+##Usage
+
+elnet_coord(y,X,Lambda,alpha,beta_init,iterlength)
+
+##Arguments
+
+`y` The response vector.
+
+`X` Design matrix
+
+`Lambda` Sequence of penalizing weights
+
+`alpha` weightage on L_1 norm
+
+`beta_init` initial coefficient vector (default rep(0,ncol(X)) - the zero vector )
+
+`iterlength` no. of iteration of the coordinate descent algorithm (default = 1000)
+
+##Value
+
+Solution path - A matrix of dimension (length(Lambda),ncol(X)) where each row gives the coefficient vector for a fixed Lambda.
+
+##Example
+
+```{r,}
+library(hw2)
+#creating the example as in hw1
+  #data simulation
+Sigma=diag(20)
+Sigma[1,2]=Sigma[2,1]=Sigma[5,6]=Sigma[6,5]=0.8
+library(MASS)
+X=mvrnorm(n,rep(0,20),Sigma)
+beta=c(c(2,0,-2,0,1,0,-1),rep(0,13))
+y=X%*%beta+rnorm(n)
+
+elnet_coord(y,X,seq(0,0.5,length=10),0.5)
+```
