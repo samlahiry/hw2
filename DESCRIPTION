@@ -2,9 +2,7 @@ Package: hw2
 Title: Combining functions of hw2 in a single package
 Version: 0.0.0.9000
 Authors@R: Samriddha Lahiry
-Description: Solves linear systems of the form Ax=b where A is a square matrix, finds ols solution 
-of a linear model using weighted subsamples, finds the elastic 
-net solution of a high dimensional linear model by a coordinate descent algorithm. 
+Description: Solves linear systems of the form Ax=b where A is a square matrix, finds ols solution of a linear model using weighted subsamples, finds the elastic net solution of a high dimensional linear model by a coordinate descent algorithm. 
 Depends: R (>= 3.5.3)
 License: What license is it under?
 Encoding: UTF-8
