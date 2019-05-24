@@ -43,6 +43,7 @@ solve_ols=function(A,b,method,tol,maxiter,core)
   {
    gs=solve(L+D)%*%(b-U%*%v)
    err=norm(gs-v)/norm(v)
+   iter=iter+1
    v=gs
   }
   print(proc.time()-ptm)
@@ -56,6 +57,7 @@ solve_ols=function(A,b,method,tol,maxiter,core)
     {
       jseq=diag(diag(A)^(-1))%*%(b-(L+U)%*%v)
       err=norm(jseq-v)/norm(v)
+      iter=iter+1
       v=jseq
     }
     print(proc.time()-ptm)
@@ -76,6 +78,7 @@ solve_ols=function(A,b,method,tol,maxiter,core)
         {(L+U)[l,]%*%v}
         jpar=diag(diag(A)^(-1))%*%(b-unlist(vec1))
         err=norm(jpar-v)/norm(v) #relative error of Jacobi(parallel)
+        iter=iter+1
         v=jpar
     }
     print(proc.time()-ptm)
